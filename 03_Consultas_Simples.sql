@@ -55,6 +55,14 @@ day(OrderDate) as 'Dia de Orden',
 CustomerID as ClienteID, EmployeeID as EmpleadoID
 from Orders;
 
+--Filas Duplicadas (distinct)
+select * from Customers;
+
+--Mostrar los paises en donde se tienen clientes
+select distinct Country
+from Customers
+order by country
+
 -- Clausula where
 -- Operadores relacionales(<,>,=,<=,>=,!= o <>)
 select * from Customers;
@@ -126,3 +134,51 @@ ShippedDate as 'Fecha de envio',
 CustomerID as 'Cliente'
 from Orders
 where year(OrderDate) = '1996'
+
+-- Mostrar todas las ordenes de compra donde la cantidad de productos comprados sea mayor a 5
+
+select * from [Order Details];
+
+select Quantity as Cantidad
+from [Order Details]
+where Quantity >5;
+
+-- Mostrar el nombre completo del empleado, su numero de empleado, fecha de nacimiento, la ciudad y fecha de contratacion
+-- y esta debe ser de aquellos que fueron contratados despues de 1993, los resultados en sus encabezados deben ser mostrados
+-- en español
+
+select * from Employees
+
+select FirstName as Nombre,
+LastName as Apellido,
+EmployeeID as 'Empleado ID',
+City as Ciudad,
+HireDate as 'Fecha de contratacion'
+from Employees
+where YEAR(HireDate) > '1993'
+
+
+select (FirstName + ' ' + LastName) as 'Nombre completo',
+EmployeeID as 'Empleado ID',
+City as Ciudad,
+HireDate as 'Fecha de contratacion'
+from Employees
+where YEAR(HireDate) > '1993'
+
+select concat(FirstName,' ', LastName) as 'Nombre completo',
+EmployeeID as 'Empleado ID',
+City as Ciudad,
+HireDate as 'Fecha de contratacion'
+from Employees
+where YEAR(HireDate) > '1993'
+
+-- Mostrar los empleados que no son dirigidos por el jefe 2
+select * from Employees
+
+select concat(FirstName,' ', LastName) as 'Nombre completo',
+EmployeeID as 'Empleado ID',
+City as Ciudad,
+HireDate as 'Fecha de contratacion',
+ReportsTo as 'Jefe'
+from Employees
+where ReportsTo !=2
