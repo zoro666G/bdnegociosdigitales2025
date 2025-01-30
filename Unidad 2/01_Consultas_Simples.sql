@@ -182,3 +182,99 @@ HireDate as 'Fecha de contratacion',
 ReportsTo as 'Jefe'
 from Employees
 where ReportsTo !=2
+
+-- Seleccionar empleados que no tengan jefe
+
+select * from Employees
+where ReportsTo is null;
+
+-- Operadores logicos (or, and y not)
+-- Seleccionar los productos que tengan un precio de entre 10 y 50 dolares
+
+select ProductName as 'Nombre',
+UnitPrice as 'Precio',
+UnitsInStock as 'Existencia'
+from Products
+where UnitPrice >=10 and UnitPrice <=50
+
+-- Mostrar todos los pedidos realizador por clientes que no son enviados a Alemania
+
+select * from Orders
+select *
+from Orders
+where ShipCountry !='Germany'
+
+select * from Orders
+where NOT ShipCountry = 'Germany'
+
+-- Seleccionar clientes de Mexico o Usa
+
+select * from Customers;
+select *
+from Customers
+where Country = 'Mexico' or Country = 'USA'
+
+-- Seleccionar empleados que nacieron entre 1955 y 1958 y que viven en Londres
+
+select * from Employees;
+
+select *
+from Employees
+where (year (BirthDate) >=1955 and year (BirthDate) <=1958) and City = 'London'
+
+
+-- Seleccionar pedidos con flete(Freight) mayores a 100 y enviados a Francia o España
+
+select * from Orders
+
+select *
+from Orders
+where Freight >100 and (ShipCountry = 'France' or ShipCountry = 'Spain')
+
+-- Seleccionar las primeras cinco ordenes de compra 
+
+select * from Orders
+
+select top 5 * from Orders
+select top 5 OrderID from Orders
+
+-- Seleccionar los productos con precio entre 10 y 50, que no esten descontinuados y tengan mas de 20 unidades en stock
+
+select * from Products
+
+select *
+from Products
+where UnitPrice >=10 and UnitPrice <=50 and Discontinued = 0 and UnitsInStock >20
+
+-- Seleccionar los pedidos enviados a Francia o Alemania pero con un flete menor a 50
+
+select * from Orders
+
+select *
+from Orders
+where (ShipCountry = 'Germany' or ShipCountry ='France') and Freight <50
+
+
+-- Seleccionar clientes que NO sean de Mexico o USA y que tengan FAX registrado
+
+select * from Customers
+
+select *
+from Customers
+where not(Country='Mexico' or Country ='USA') and Fax is not null
+
+select *
+from Customers
+where (Country<>'Mexico' and Country <>'USA') and Fax is not null
+
+-- Seleccionar pedidos con un flete mayor a 100, enviados a Brasil o Argentina, pero NO enviados por el transportista 1
+
+select * from Shippers
+select * from Orders
+
+select * from
+Orders
+where Freight >100 and (ShipCountry ='Brazil' or ShipCountry = 'Argentina') and not ShipVia= 1;
+
+
+
