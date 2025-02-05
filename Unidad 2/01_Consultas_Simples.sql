@@ -56,6 +56,7 @@ CustomerID as ClienteID, EmployeeID as EmpleadoID
 from Orders;
 
 --Filas Duplicadas (distinct)
+-- Datos repetidos
 select * from Customers;
 
 --Mostrar los paises en donde se tienen clientes
@@ -430,4 +431,78 @@ where CompanyName like '%co%'
 select FirstName, LastName
 from Employees
 where FirstName like 'A_____' 
+
+-- Seleccionar los productos que comienzen con A o B
+
+select *
+from Products
+where ProductName like '[AB]%'
+
+select *
+from Products
+where ProductName like '[A-M]%'
+
+-- Seleccionar todos los productos que no comienzen con A o B
+
+select *
+from Products
+where ProductName like '[^AB]%'
+
+-- Seleccionar todos los productos donde el nombre comienze con A pero que no contenga la E en la que sigue
+
+select*
+from Products
+where ProductName like 'a[^e]%' 
+
+-- Clausula order by
+
+select ProductID,
+ProductName,
+UnitPrice,
+UnitsInStock
+from Products
+order by UnitPrice desc
+
+select ProductID,
+ProductName,
+UnitPrice,
+UnitsInStock
+from Products
+order by 3 desc
+
+select ProductID,
+ProductName,
+UnitPrice as 'Precio',
+UnitsInStock
+from Products
+order by 'Precio' desc
+
+-- Seleccionar los clientes ordenados por el pais y dentro por ciudad
+select CustomerID,
+Country,
+City
+from Customers
+order by  Country asc, city asc
+
+select CustomerID,
+Country,
+City
+from Customers
+where Country in ('Brazil', 'Germany')
+order by  Country asc, city desc
+
+select CustomerID,
+Country,
+City
+from Customers
+where (Country = 'Brazil' or country ='Germany') and Region is not null
+order by  Country asc, city desc
+
+select CustomerID,
+Country,
+City
+from Customers
+where (Country = 'Brazil' or country ='Germany') and Region is not null
+order by  Count, city desc
+
 
