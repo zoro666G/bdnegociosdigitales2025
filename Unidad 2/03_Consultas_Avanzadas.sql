@@ -57,8 +57,121 @@ inner join [Order Details] as od
 on od.OrderID = o.OrderID
 where o.OrderDate between '1996-01-03' and '1996-31-10'
 
+-- Consultas basicas con inner join 
+
+-- 1. Obtener los nombres de los clientes y los paises a los que se enviaron sus pedidos
+
+select c.CompanyName as 'Nombre del ciiente', o.ShipCountry as 'Pais de envio.'
+from Customers as c
+inner join Orders as o
+on c.CustomerID = o.CustomerID
+order by 2 desc
+
+select c.CompanyName, o.ShipCountry
+from Customers as c
+inner join Orders as o
+on c.CustomerID = o.CustomerID
+order by o.ShipCountry desc
+
+-- 2. Obtener los productos y sus respectivos proveedores
+
+select s.CompanyName, p.ProductName
+from Products as p
+inner join Suppliers as s
+on p.SupplierID = s.SupplierID
+
+-- 3. Obtener pedidos y los empleados que los gestionaron
+select o.OrderID, concat (e.Title, ' - ', e.FirstName, ' ', e.LastName) as Nombre 
+from
+Orders as o
+inner join Employees as e
+on o.EmployeeID = e.EmployeeID
+
+-- 4. Listas los productos junto con sus precios y la categoria a la que pertenecen
+
+select p.ProductName as 'Nombre del producto', p.UnitPrice as 'Precio',c.CategoryName 'Nombre de la categoria' 
+from
+Products as p
+inner join Categories as c
+on p.CategoryID = c.CategoryID
+
+-- 5. Obtener el nombre del cliente, el numero de orden y la fecha de orden
+
+select c.CompanyName as 'Nombre del cliente', o.OrderID as 'Numero de orden', o.OrderDate as 'Fecha de orden'
+from Customers as c
+inner join Orders as o
+on c.CustomerID = o.CustomerID
+
+-- 6. Listar las ordenes mostrando el numero de orden, el nombre del producto y la cantidad que se vendio
+
+select od.OrderID as 'Numero de orden', p.ProductName as 'Nombre del producto', od.Quantity as 'Cantidad vendida'
+from [Order Details] as od
+inner join Products as p
+on od.ProductID = p.ProductID
+order by od.Quantity desc
+
+select top 5 od.OrderID as 'Numero de orden', p.ProductName as 'Nombre del producto', od.Quantity as 'Cantidad vendida'
+from [Order Details] as od
+inner join Products as p
+on od.ProductID = p.ProductID
+order by od.Quantity desc
+
+select od.OrderID as 'Numero de orden', p.ProductName as 'Nombre del producto', od.Quantity as 'Cantidad vendida'
+from [Order Details] as od
+inner join Products as p
+on od.ProductID = p.ProductID
+where od.OrderID = '11031'
+order by od.Quantity desc
 
 
+-- 7. Obtener los empleados y sus respectivos jefes
+select concat(e1.FirstName, ' ', e1.LastName) as 'Empleado', concat(j1.FirstName, ' ', j1.LastName) as 'Jefe' 
+from Employees as e1
+inner join Employees as j1
+on e1.ReportsTo = j1.EmployeeID
+
+-- 8. Listar los pedidos y el nombre de la empresa de transporte utilizada
+
+select o.OrderID as 'Numero de orden', s.CompanyName as 'Empresa de transporte'
+from Orders as o
+inner join Shippers as s
+on o.ShipVia = s.ShipperID
+
+-- Consultas inner join intermedias
+
+-- 9. Obtener la cantidad total de productos vendidos por categoria
+
+select sum (Quantity) from [Order Details]
+
+select c.CategoryName as 'Nombre de la categoria', sum (Quantity) as 'Productos vendidos'
+from Categories as c
+inner join Products as p
+on c.CategoryID = p.CategoryID
+inner join [Order Details] as od
+on od.ProductID = p.ProductID
+group by c.CategoryName
+order by c.CategoryName asc
+
+-- 10. Obtener el total de ventas por empleados
+
+select concat(e.FirstName, ' ', e.LastName) as 'Nombre del empleado', sum ((od.Quantity * od.UnitPrice) - (od.Quantity * od.UnitPrice) * od.Discount) as 'Total de ventas'
+from Orders as o
+inner join Employees as e
+on o.EmployeeID = e.EmployeeID
+inner join [Order Details] as od
+on od.OrderID = o.OrderID
+group by e.FirstName, e.LastName
+
+
+select * from [Order Details]
+
+
+
+
+
+select*from Customers
+select*from Orders
+select*from Suppliers
 
 
 
