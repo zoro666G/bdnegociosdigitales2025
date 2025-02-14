@@ -165,6 +165,91 @@ group by e.FirstName, e.LastName
 
 select * from [Order Details]
 
+-- 11. Listar los clientes y la cantidad de pedido que han realizado
+
+select c.CompanyName as 'Clientes', count(*) as 'Cantidad de pedidos realizados'
+from Orders as o
+inner join Customers as c
+on o.CustomerID = c.CustomerID
+group by c.CompanyName
+order by 2 desc
+
+
+select c.CompanyName as 'Clientes', count(*) as 'Cantidad de pedidos realizados'
+from Orders as o
+inner join Customers as c
+on o.CustomerID = c.CustomerID
+group by c.CompanyName
+order by count(*) desc
+
+
+-- 12. Obtener los empleados que han gestionado pedidos enviados a Alemania
+
+select distinct concat(e.FirstName, ' ', e.LastName) as 'Empleado', o.ShipCountry as 'Pais enviado'
+from Employees as e
+inner join Orders as o
+on e.EmployeeID = o.EmployeeID
+where o.ShipCountry = 'Germany'
+
+-- 13. Listar los productos junto con el nombre del proveedor y el pais de origen
+
+select p.ProductName as 'Productos', s.CompanyName as 'Nombre del proveedor', s.Country as 'Pais de Origen'
+from Products as p
+inner join Suppliers as s
+on p.SupplierID = s.SupplierID
+order by 1 asc
+
+-- 14. Obtener los pedidos agrupados por pais de envio
+
+select ShipCountry as 'Pais de envio', count(OrderID) as 'Envio'
+from Orders
+group by ShipCountry
+order by 2 desc
+
+-- 15. Obtener los empleados y la cantidad de territorios en los que trabajan
+select concat(e.FirstName, ' ', e.LastName) as 'Nombre de empleado', count(et.TerritoryID) as 'Numero de territorio'
+from Employees as e
+inner join EmployeeTerritories as et
+on e.EmployeeID = et.EmployeeID
+group by concat(e.FirstName, ' ', e.LastName)
+order by 2 asc
+
+-- 16. Listar las categorias y la cantidad de productos que contienen
+
+select  c.CategoryName as 'Categorias', count(p.UnitsInStock) as 'Cantidad de productos'
+from Categories as c
+inner join Products as p
+on c.CategoryID = p.CategoryID
+group by c.CategoryName
+order by 2 asc
+
+-- 17. Obtener la cantidad total de productos vendidos por proveedor
+
+select s.CompanyName as 'Nombre del proveedor', sum(od.Quantity) as 'Cantidad total'
+from Products as p
+inner join Suppliers as s
+on p.SupplierID = s.SupplierID
+inner join [Order Details] as od
+on od.ProductID = p.ProductID
+group by s.CompanyName
+order by 2 asc
+
+
+-- 18. Obtener la cantidad de pedidos enviados por cada empresa de transporte
+
+select c.CompanyName as 'Empresa de transporte', count(s.ShipperID) as 'Pedidos'
+from Orders as o
+inner join Shippers as s
+on o.ShipVia = s.ShipperID
+inner join Customers as c
+on o.CustomerID = c.CustomerID
+group by c.CompanyName
+order by 2 asc
+-- Consultas Avanzadas
+-- 19. Obtener los clientes que han realizado pedidos con mas de un producto
+
+
+
 
 
 
