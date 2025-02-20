@@ -1,4 +1,6 @@
+# Inner joins
 
+![Inner Join](../img/img_inner_join.png)
 -- Seleccionar todas las categorias y productos
 
 select * from
@@ -348,6 +350,8 @@ group by c.CompanyName
 having sum(od.UnitPrice*od.Quantity) between '500' and '2000'
 order by 2 asc
 
+
+```
 -- Left join, Right join, Full join y Cross join
 
 
@@ -364,10 +368,6 @@ order by 2 asc
 
 
 
-
-select*from Customers
-select*from Orders
-select*from Suppliers
 
 
 
