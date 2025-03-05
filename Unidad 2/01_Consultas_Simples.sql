@@ -48,12 +48,12 @@ select * ,(UnitPrice * Quantity) as Importe from [Order Details];
 
 -- Seleccionar las fechas de orden, año, mes y dia, el cliente que las ordeno y el empleado que la realizo
 
-select OrderDate as 'Fecha de Orden',
-year(OrderDate) as ' Año de orden',
-month(OrderDate) as ' Mes de orden',
-day(OrderDate) as 'Dia de Orden',
+select OrderDate as 'Fecha de Orden',,
 CustomerID as ClienteID, EmployeeID as EmpleadoID
 from Orders;
+year(OrderDate) as ' Año de orden',
+month(OrderDate) as ' Mes de orden',
+day(OrderDate) as 'Dia de Orden'
 
 --Filas Duplicadas (distinct)
 -- Datos repetidos

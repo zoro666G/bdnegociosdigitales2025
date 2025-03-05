@@ -350,6 +350,14 @@ order by 2 asc
 
 -- Left join, Right join, Full join y Cross join
 
+-- Practica de utilizacion de Left Join
+
+-- Seleccionar los datos que se van a utilizar para insertar en la tabla products_new
+
+-- product_id, productName, Customer, Category, unitprice, discontinued, inserted_date
+
+select productid, productName, Customer, Category, unitprice, discontinued, insert_date
+from Products_New
 
 
 
