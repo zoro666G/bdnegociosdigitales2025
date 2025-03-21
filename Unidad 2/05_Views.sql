@@ -24,7 +24,7 @@ go
 select * from VistaCategoriasTodas
 where CategoryName = 'Beverages'
 
--- Crear una vista que permita visualizar solamentes clientes de Mexico y Brazil
+-- Crear una vista que permita visualizar solamente clientes de Mexico y Brazil
 go
 create or alter view vistaClientesLatinos
 as
@@ -89,6 +89,7 @@ select [Nombre del Cliente] as 'Nombre Cliente', sum([Cantidad Vendida] * [Preci
 from vistaordenescompra
 where year([Fecha de orden]) between '1995' and '1996' 
 group by [Nombre del cliente]
+--Solo se incluyen los clientes que tienen más de 2 órdenes
 having count(*)>2
 go
 
