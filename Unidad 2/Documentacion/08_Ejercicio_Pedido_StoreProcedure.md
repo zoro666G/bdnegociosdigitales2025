@@ -1,5 +1,9 @@
 # Ejercicio de Pedidos con Store Procedure
 
+## Introducción
+
+El proceso de gestión de pedidos es fundamental en muchas aplicaciones comerciales, y el uso de procedimientos almacenados puede facilitar la validación y la ejecución de operaciones complejas en la base de datos. En este ejercicio, se muestra cómo realizar un pedido mediante un procedimiento almacenado en SQL Server. El procedimiento asegura que los datos ingresados sean válidos, realiza cálculos automáticos del importe total del pedido y actualiza el stock de los productos vendidos. 
+
 - Realizar un pedido
 - Validar que el pedido no exista
 - Validar que el cliente, el empleado y el producto exista
@@ -7,6 +11,7 @@
 - Insertar el pedido y calcular el importe(Multiplicando el precio del producto por cantidad vendida)
 - Actualizar el stock del producto(restando el stock menos la cantidad vendida)
 
+## Codigo
 ``` sql
 create or alter proc spu_realizar_pedido
 	@Num_Pedido int,
@@ -106,3 +111,6 @@ execute spu_realizar_pedido
 	@Producto= '4100X',
 	@Cantidad =20
 ```
+
+## Conclusión
+Este ejercicio demuestra cómo un procedimiento almacenado puede simplificar la gestión de pedidos al realizar múltiples validaciones y cálculos en un solo bloque de código. Con la validación de existencia de datos, control de stock y la actualización automática del inventario, el procedimiento mejora la eficiencia del sistema, evitando errores manuales y asegurando la integridad de los datos. Además, este enfoque facilita la automatización de procesos de negocio y proporciona una mayor seguridad en las operaciones de la base de datos.
