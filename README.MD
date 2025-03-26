@@ -1,4 +1,4 @@
-# Base de Datos para Negocios Difitales
+# Base de Datos para Negocios Digitales
 
 ## Topicos
 
