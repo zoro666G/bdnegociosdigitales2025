@@ -56,7 +56,7 @@ db.Empleado.drop()
 
 ```json
 db.alumnos.insertOne({
-    nomre: 'Jose Luis',
+    nombre: 'Jose Luis',
     apellido: 'Herrera',
     apellido2: 'Gallardo',
     edad: 41,
